@@ -1,3 +1,7 @@
+
+--UI library designed and developed by Barlas discord: 5nqs
+
+
 local Icons = {
     crosshairs = "rbxassetid://96677288280405",
     ghost      = "rbxassetid://95400397758754",
@@ -161,30 +165,22 @@ function Library:CreateWindow(cfg)
     })
     Window.Main = main
 
-    local sidebar = New("Frame", {
-        Size = UDim2.fromOffset(170, 500),
-        BackgroundColor3 = Theme.WindowBg, BackgroundTransparency = 0.1,
-        BorderSizePixel = 0, Parent = main,
-    }, { Corner(8) })
-    New("Frame", {
-        Size = UDim2.fromOffset(10, 500), Position = UDim2.fromOffset(160, 0),
-        BackgroundColor3 = Theme.WindowBg, BackgroundTransparency = 0.1, BorderSizePixel = 0, Parent = sidebar,
-    })
+    local function Panel(x, y, w, h, ox, oy, ew, eh, alpha)
+        local clip = New("Frame", {
+            Size = UDim2.fromOffset(w, h), Position = UDim2.fromOffset(x, y),
+            BackgroundTransparency = 1, ClipsDescendants = true, BorderSizePixel = 0, Parent = main,
+        })
+        New("Frame", {
+            Size = UDim2.fromOffset(w + ew, h + eh), Position = UDim2.fromOffset(ox, oy),
+            BackgroundColor3 = Theme.WindowBg, BackgroundTransparency = alpha, BorderSizePixel = 0, Parent = clip,
+        }, { Corner(8) })
+        return clip
+    end
 
-    local topbar = New("Frame", {
-        Size = UDim2.fromOffset(520, 60), Position = UDim2.fromOffset(170, 0),
-        BackgroundColor3 = Theme.WindowBg, BackgroundTransparency = 0.05, BorderSizePixel = 0, Parent = main,
-    }, { Corner(8) })
-    New("Frame", { Size = UDim2.fromOffset(10, 60), BackgroundColor3 = Theme.WindowBg, BackgroundTransparency = 0.05, BorderSizePixel = 0, Parent = topbar })
-    New("Frame", { Size = UDim2.fromOffset(520, 10), Position = UDim2.fromOffset(0, 50), BackgroundColor3 = Theme.WindowBg, BackgroundTransparency = 0.05, BorderSizePixel = 0, Parent = topbar })
+    local sidebar = Panel(0, 0, 170, 500, 0, 0, 10, 0, 0.1)
+    local topbar = Panel(170, 0, 520, 60, -10, 0, 10, 10, 0.05)
     New("Frame", { Size = UDim2.fromOffset(520, 1), Position = UDim2.fromOffset(170, 60), BackgroundColor3 = Theme.WindowBg, BackgroundTransparency = 0.1, BorderSizePixel = 0, Parent = main })
-
-    local contentBg = New("Frame", {
-        Size = UDim2.fromOffset(520, 439), Position = UDim2.fromOffset(170, 61),
-        BackgroundColor3 = Theme.WindowBg, BorderSizePixel = 0, Parent = main,
-    }, { Corner(8) })
-    New("Frame", { Size = UDim2.fromOffset(10, 439), BackgroundColor3 = Theme.WindowBg, BorderSizePixel = 0, Parent = contentBg })
-    New("Frame", { Size = UDim2.fromOffset(520, 10), BackgroundColor3 = Theme.WindowBg, BorderSizePixel = 0, Parent = contentBg })
+    local contentBg = Panel(170, 61, 520, 439, -10, -10, 10, 10, 0)
 
     local title = cfg.Title or "NEVERLOSE"
     Label({ Text = title, Font = Theme.FontBold, TextSize = 26, TextColor3 = Theme.Accent,
