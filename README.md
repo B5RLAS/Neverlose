@@ -1,1 +1,1 @@
-<img width="800" height="576" alt="alwayslose" src="https://github.com/user-attachments/assets/6c340afe-6b25-472d-8368-971785445ca4" />
+<img width="728" height="525" alt="image" src="https://github.com/user-attachments/assets/6aacb9e1-806e-4088-a853-db2a55f6e93b" />
