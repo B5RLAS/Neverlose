@@ -735,7 +735,7 @@ end
 
 local Window = Library:CreateWindow({
     Title = "NEVERLOSE",
-    User  = "evrope",
+    User  = "Barlas",
     Till  = "Lifetime",
     OnSave = function(flags) print("[Neverlose] saved", flags) end,
 })
